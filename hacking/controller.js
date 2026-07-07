@@ -4,6 +4,8 @@ const MAX_TARGETS = 5;
 
 /** @param {NS} ns */
 export async function main(ns) {
+	ns.disableLog("ALL");
+
 	const hackScript = "/hacking/hack.js";
 	const growScript = "/hacking/grow.js";
 	const weakenScript = "/hacking/weaken.js";
