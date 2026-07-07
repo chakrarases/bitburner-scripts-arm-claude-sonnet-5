@@ -65,6 +65,6 @@ Conventions to follow:
 
 ## Fill in for your setup
 > These are specific to your repo — Claude, ask if one of these is missing and actually matters for the current task.
-- **Folder layout: /hacking, /hacknet, /gang, /corp, /sleeve, /stock, /bitrunner, /gamego, /singularity, /utils, etc. (I will specific more when I can unlock new bitnode.)
+- **Folder layout: /hacking, /casino, /hacknet, /gang, /corp, /sleeve, /stock, /bitrunner, /gamego, /singularity, /utils, etc. (I will specific more when I can unlock new bitnode.)
 - **Sync tool/command** that pulls committed code into the browser: git-pull.js
 - **Plain JS or TypeScript-compiled-to-JS: Plain JS
