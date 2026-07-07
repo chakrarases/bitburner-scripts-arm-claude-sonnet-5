@@ -1,7 +1,8 @@
+import { getRootedServers } from "/utils/network.js";
+
 /** @param {NS} ns */
 export async function main(ns) {
 	const target = "foodnstuff";
-	const host = ns.getHostname();
 	const hackScript = "/hacking/hack.js";
 	const growScript = "/hacking/grow.js";
 	const weakenScript = "/hacking/weaken.js";
@@ -23,17 +24,23 @@ export async function main(ns) {
 			script = hackScript;
 		}
 
-		const scriptRam = ns.getScriptRam(script, host);
-		const freeRam = ns.getServerMaxRam(host) - ns.getServerUsedRam(host);
-		const threads = Math.floor(freeRam / scriptRam);
+		const pids = [];
+		for (const host of getRootedServers(ns)) {
+			const scriptRam = ns.getScriptRam(script, host);
+			const freeRam = ns.getServerMaxRam(host) - ns.getServerUsedRam(host);
+			const threads = Math.floor(freeRam / scriptRam);
+			if (threads < 1) continue;
 
-		if (threads < 1) {
+			const pid = ns.exec(script, host, threads, target);
+			if (pid !== 0) pids.push(pid);
+		}
+
+		if (pids.length === 0) {
 			await ns.sleep(1000);
 			continue;
 		}
 
-		const pid = ns.exec(script, host, threads, target);
-		while (ns.isRunning(pid)) {
+		while (pids.some((pid) => ns.isRunning(pid))) {
 			await ns.sleep(200);
 		}
 	}
