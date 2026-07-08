@@ -1,4 +1,5 @@
 import { scanAllServers } from "/utils/network.js";
+import { logToTerminal } from "/utils/log.js";
 
 /** @param {NS} ns */
 export async function main(ns) {
@@ -18,7 +19,7 @@ export async function main(ns) {
 		}
 	}
 
-	ns.tprint(`Rooted and deployed workers to ${rooted.length} server(s): ${rooted.join(", ") || "(none)"}`);
+	logToTerminal(ns, `Rooted and deployed workers to ${rooted.length} server(s): ${rooted.join(", ") || "(none)"}`);
 }
 
 function tryRoot(ns, host) {

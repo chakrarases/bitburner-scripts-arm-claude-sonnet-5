@@ -10,3 +10,8 @@ function timestamp() {
 export function log(ns, message) {
 	ns.print(`${timestamp()} ${message}`);
 }
+
+/** @param {NS} ns */
+export function logToTerminal(ns, message) {
+	ns.tprint(`${timestamp()} ${message}`);
+}
