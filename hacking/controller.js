@@ -1,4 +1,5 @@
 import { getRootedServers, scanAllServers } from "/utils/network.js";
+import { log } from "/utils/log.js";
 
 const MAX_TARGETS = 5;
 
@@ -19,7 +20,7 @@ export async function main(ns) {
 			continue;
 		}
 
-		ns.print(`Targeting: ${targets.join(", ")} across ${hosts.length} host(s)`);
+		log(ns, `Targeting: ${targets.join(", ")} across ${hosts.length} host(s)`);
 
 		const assignment = allocateHostsToTargets(ns, hosts, targets);
 
